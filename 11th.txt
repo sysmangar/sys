@@ -1,0 +1,75 @@
+# Graph with edge costs
+graph = {
+    'a': {'b': 4, 'c': 3},
+    'b': {'a': 4, 'f': 5, 'e': 12},
+    'c': {'a': 3, 'e': 10, 'd': 7},
+    'd': {'c': 7, 'e': 2},
+    'e': {'c': 10, 'd': 2, 'b': 12, 'z': 5},
+    'f': {'b': 5, 'z': 16},
+    'z': {}
+}
+# Heuristic values h(n)
+heuristic = {
+    'a': 14,
+    'b': 12,
+    'c': 11,
+    'd': 6,
+    'e': 4,
+    'f': 11,
+    'z': 0
+}
+
+def astar(start, goal):
+
+    open_list = [start]
+    closed_list = []
+
+    g = {start: 0}
+    parent = {start: start}
+
+    while open_list:
+
+        # node with minimum f = g + h
+        n = open_list[0]
+        for node in open_list:
+            if g[node] + heuristic[node] < g[n] + heuristic[n]:
+                n = node
+
+        # Goal reached
+        if n == goal:
+            path = []
+            while parent[n] != n:
+                path.append(n)
+                n = parent[n]
+            path.append(start)
+            path.reverse()
+
+            print("\nMinimum Path :", path)
+            print("Total Cost :", g[goal])
+            return
+
+        open_list.remove(n)
+        closed_list.append(n)
+
+        # check neighbors
+        for neighbor in graph[n]:
+            cost = g[n] + graph[n][neighbor]
+
+            if neighbor not in open_list and neighbor not in closed_list:
+                open_list.append(neighbor)
+                parent[neighbor] = n
+                g[neighbor] = cost
+
+            else:
+                if cost < g.get(neighbor, 9999):
+                    g[neighbor] = cost
+                    parent[neighbor] = n
+                    if neighbor in closed_list:
+                        closed_list.remove(neighbor)
+                        open_list.append(neighbor)
+
+    print("Path does not exist!")
+
+
+# Run A*
+astar('a', 'z')

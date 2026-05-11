@@ -1,0 +1,14 @@
+public class CalculatorController {
+
+    public Integer num1 {get; set;}
+    public Integer num2 {get; set;}
+    public Integer result {get; set;}
+
+    public void add() { result = num1 + num2; }
+    public void sub() { result = num1 - num2; }
+    public void mul() { result = num1 * num2; }
+    public void div() {
+        if(num2 != 0) result = num1 / num2;
+        else result = 0;
+    }
+}

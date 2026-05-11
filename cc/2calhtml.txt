@@ -1,0 +1,57 @@
+<apex:page controller="CalculatorController" showHeader="false" sidebar="false">
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+        }
+
+        .box {
+            width: 320px;
+            margin: 80px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+            text-align: center;
+        }
+
+        input {
+            width: 85%;
+            padding: 8px;
+            margin: 8px;
+        }
+
+        .btn {
+            margin: 5px;
+            padding: 8px 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <div class="box">
+        <h2> Calculator</h2>
+
+        <apex:form>
+
+            <apex:inputText value="{!num1}" html-placeholder="Enter Number 1"/><br/>
+            <apex:inputText value="{!num2}" html-placeholder="Enter Number 2"/><br/>
+
+            <apex:commandButton value="+" action="{!add}" styleClass="btn"/>
+            <apex:commandButton value="-" action="{!sub}" styleClass="btn"/>
+            <apex:commandButton value="×" action="{!mul}" styleClass="btn"/>
+            <apex:commandButton value="÷" action="{!div}" styleClass="btn"/>
+
+            <h3>Result: {!result}</h3>
+
+        </apex:form>
+    </div>
+
+</apex:page>

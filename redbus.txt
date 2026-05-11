@@ -1,68 +1,132 @@
-print("🤖 Welcome to RedBus")
+print("🤖 Welcome to RedBus Booking System")
 
 total = 0
 
+tickets = []
+
 while True:
 
-    print("\n1. Pune  - Rs 500")
-    print("2. Mumbai - Rs 700")
-    print("3. Nashik - Rs 400")
-    print("4. Checkout")
-    print("5. Exit")
+    print("\n========= MENU =========")
 
-    choice = input("Enter choice: ")
+    print("1. Pune    - Rs 500")
+    print("2. Mumbai  - Rs 700")
+    print("3. Nashik  - Rs 400")
+    print("4. Refund Ticket")
+    print("5. Checkout")
+    print("6. Exit")
 
+    choice = input("\nEnter choice: ")
+
+    # Pune
     if choice == '1':
 
         total += 500
 
-        print("Pune ticket booked")
+        tickets.append(("Pune", 500))
 
+        print("✅ Pune ticket booked")
+
+    # Mumbai
     elif choice == '2':
 
         total += 700
 
-        print("Mumbai ticket booked")
+        tickets.append(("Mumbai", 700))
 
+        print("✅ Mumbai ticket booked")
+
+    # Nashik
     elif choice == '3':
 
         total += 400
 
-        print("Nashik ticket booked")
+        tickets.append(("Nashik", 400))
 
+        print("✅ Nashik ticket booked")
+
+    # Refund
     elif choice == '4':
 
-        print("\nTotal Amount = Rs", total)
+        if len(tickets) == 0:
 
-        print("\nPayment Method")
-        print("1. Cash")
-        print("2. UPI")
-
-        payment = input("Enter payment option: ")
-
-        if payment == '1':
-
-            print("Cash Payment Selected")
-
-        elif payment == '2':
-
-            print("UPI Payment Successful")
+            print("❌ No tickets available for refund")
 
         else:
 
-            print("Invalid Payment")
+            print("\nTickets Available For Refund")
 
-        print("\n🎉 Ticket Booking Confirmed")
-        print("Thank You")
-        
-        break
+            for i in range(len(tickets)):
 
+                print(i + 1, ".", tickets[i][0], "- Rs", tickets[i][1])
+
+            refund = int(input("Enter ticket number to refund: "))
+
+            if refund >= 1 and refund <= len(tickets):
+
+                city = tickets[refund - 1][0]
+
+                amount = tickets[refund - 1][1]
+
+                total -= amount
+
+                tickets.pop(refund - 1)
+
+                print("✅ Refund Successful for", city)
+
+                print("Refund Amount = Rs", amount)
+
+            else:
+
+                print("Invalid Ticket Number")
+
+    # Checkout
     elif choice == '5':
 
+        print("\n========= CHECKOUT =========")
+
+        if len(tickets) == 0:
+
+            print("❌ No tickets booked")
+
+        else:
+
+            print("Total Amount = Rs", total)
+
+            print("\nPayment Method")
+            print("1. Cash")
+            print("2. UPI")
+            print("3. Card")
+
+            payment = input("Enter payment option: ")
+
+            if payment == '1':
+
+                print("💵 Cash Payment Selected")
+
+            elif payment == '2':
+
+                print("📱 UPI Payment Successful")
+
+            elif payment == '3':
+
+                print("💳 Card Payment Successful")
+
+            else:
+
+                print("Invalid Payment Option")
+
+            print("\n🎉 Ticket Booking Confirmed")
+            print("🚌 Thank You For Using RedBus")
+
+            break
+
+    # Exit
+    elif choice == '6':
+
         print("Exited Successfully")
-        
+
         break
 
     else:
 
-        print("Invalid Choice")
+        print("❌ Invalid Choice")

@@ -1,38 +1,125 @@
 def chatbot():
-    print("Welcome to Blinkit Chatbot!")
+
+    print("🛒 Welcome to Blinkit Chatbot!")
 
     cart_total = 0
 
+    orders = []
+
     while True:
-        print("\n1. Order Item\n2. View Cart\n3. Track Order\n4. Cancel Order\n5. Select Delivery Slot\n6. Exit")
+
+        print("\n========= MENU =========")
+
+        print("1. Order Item")
+        print("2. View Cart")
+        print("3. Track Order")
+        print("4. Cancel Order")
+        print("5. Select Delivery Slot")
+        print("6. Apply Coupon")
+        print("7. Exit")
+
         choice = input("Enter choice: ")
 
+        # Order Item
         if choice == '1':
+
             item = input("Enter item: ")
+
             qty = int(input("Enter quantity: "))
+
             price = 50
+
             cost = qty * price
+
             cart_total += cost
-            print(f"Added {item}. Cost: Rs.{cost}")
 
+            orders.append(item)
+
+            print(f"✅ {item} added to cart")
+
+            print(f"Cost: Rs.{cost}")
+
+        # View Cart
         elif choice == '2':
-            print(f"Total cart value: Rs.{cart_total}")
 
+            print("\n🛍 Cart Items:")
+
+            if len(orders) == 0:
+
+                print("Cart is empty")
+
+            else:
+
+                for item in orders:
+
+                    print("-", item)
+
+                print("Total Cart Value = Rs.", cart_total)
+
+        # Track Order
         elif choice == '3':
-            oid = input("Enter order ID: ")
-            print(f"Order {oid} arriving in 10 mins")
 
+            oid = input("Enter Order ID: ")
+
+            print(f"🚚 Order {oid} arriving in 10 mins")
+
+        # Cancel Order
         elif choice == '4':
-            oid = input("Enter order ID: ")
-            print(f"Order {oid} cancelled")
 
+            oid = input("Enter Order ID: ")
+
+            print(f"❌ Order {oid} cancelled")
+
+        # Delivery Slot
         elif choice == '5':
-            print("Available slots: 10AM, 1PM, 6PM")
 
+            print("\nAvailable Slots")
+            print("1. 10AM")
+            print("2. 1PM")
+            print("3. 6PM")
+
+            slot = input("Select slot: ")
+
+            if slot == '1':
+
+                print("✅ Slot booked for 10AM")
+
+            elif slot == '2':
+
+                print("✅ Slot booked for 1PM")
+
+            elif slot == '3':
+
+                print("✅ Slot booked for 6PM")
+
+            else:
+
+                print("Invalid Slot")
+
+        # Coupon
         elif choice == '6':
+
+            coupon = input("Enter Coupon Code: ")
+
+            if coupon == "SAVE50":
+
+                cart_total -= 50
+
+                print("🎉 Coupon Applied Successfully")
+
+            else:
+
+                print("Invalid Coupon")
+
+        # Exit
+        elif choice == '7':
+
+            print("🙏 Thank You For Using Blinkit")
+
             break
 
         else:
-            print("Invalid choice")
+
+            print("❌ Invalid Choice")
 
 chatbot()

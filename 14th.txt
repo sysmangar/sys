@@ -1,0 +1,44 @@
+# Take graph input
+graph = {}
+
+n = int(input("Enter number of nodes: "))
+
+for i in range(n):
+    node = input("\nEnter node name: ")
+    neighbors = input(f"Enter neighbors of {node} (space separated): ").split()
+    graph[node] = neighbors
+
+# Take heuristic values
+h = {}
+print("\nEnter heuristic values")
+
+for node in graph:
+    h[node] = int(input(f"h({node}) = "))
+
+start = input("\nEnter Start Node: ")
+goal = input("Enter Goal Node: ")
+
+# Greedy Search Function
+def greedy_search(start, goal):
+    open_list = [start]
+    visited = []
+
+    while open_list:
+        open_list.sort(key=lambda x: h[x])
+        node = open_list.pop(0)
+
+        print("Visited:", node)
+        visited.append(node)
+
+        if node == goal:
+            print("\nGoal Found!")
+            return
+
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                open_list.append(neighbor)
+
+    print("Goal Not Found")
+
+# Run
+greedy_search(start, goal)

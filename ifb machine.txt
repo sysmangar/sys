@@ -1,0 +1,33 @@
+def chatbot():
+    print("Welcome to IFB Service Centre!")
+
+    while True:
+        print("\n1. Register Complaint\n2. Check Status\n3. Service Cost\n4. Book Technician\n5. Warranty Check\n6. Exit")
+        choice = input("Enter choice: ")
+
+        if choice == '1':
+            name = input("Enter name: ")
+            issue = input("Enter issue: ")
+            print("Complaint registered. Technician will visit soon.")
+
+        elif choice == '2':
+            rid = input("Enter request ID: ")
+            print(f"Request {rid} is in progress")
+
+        elif choice == '3':
+            print("Service cost starts from Rs.500")
+
+        elif choice == '4':
+            print("Available slots: Tomorrow 10AM / 4PM")
+
+        elif choice == '5':
+            product = input("Enter product ID: ")
+            print("Product is under warranty")
+
+        elif choice == '6':
+            break
+
+        else:
+            print("Invalid choice")
+
+chatbot()

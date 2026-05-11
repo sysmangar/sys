@@ -1,0 +1,79 @@
+graph = {
+    'a': {'b': 4, 'c': 3},
+    'b': {'f': 5, 'e': 12},
+    'c': {'e': 10, 'd': 7},
+    'd': {'e': 2},
+    'e': {'z': 5},
+    'f': {'z': 16},
+    'z': {}
+}
+
+heuristic = {
+    'a': 14,
+    'b': 12,
+    'c': 11,
+    'd': 6,
+    'e': 4,
+    'f': 11,
+    'z': 0
+}
+
+start = 'a'
+goal = 'z'
+
+open = [start]
+
+g = {
+    'a': 0
+}
+
+parent = {
+    'a': 'a'
+}
+
+while open:
+
+    current = min(open, key=lambda node: g[node] + heuristic[node])
+
+    print("Current Node :", current)
+
+    if current == goal:
+
+        print("Goal Reached")
+        break
+
+    open.remove(current)
+
+    for neighbour in graph[current]:
+
+        cost = graph[current][neighbour]
+
+        new_cost = g[current] + cost
+
+        if neighbour not in g or new_cost < g[neighbour]:
+
+            g[neighbour] = new_cost
+
+            parent[neighbour] = current
+
+            if neighbour not in open:
+
+                open.append(neighbour)
+
+path = []
+
+node = goal
+
+while node != start:
+
+    path.append(node)
+
+    node = parent[node]
+
+path.append(start)
+
+path.reverse()
+
+print("Path :", path)
+
+print("Minimum Cost :", g[goal])

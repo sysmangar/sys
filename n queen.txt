@@ -1,0 +1,55 @@
+n = 4
+
+board = [[0]*n for i in range(n)]
+
+def safe(row, col):
+
+    for i in range(col):
+
+        if board[row][i] == 1:
+            return False
+
+    i = row
+    j = col
+
+    while i >= 0 and j >= 0:
+
+        if board[i][j] == 1:
+            return False
+
+        i -= 1
+        j -= 1
+
+    i = row
+    j = col
+
+    while i < n and j >= 0:
+
+        if board[i][j] == 1:
+            return False
+
+        i += 1
+        j -= 1
+
+    return True
+
+def solve(col):
+
+    if col == n:
+        return True
+
+    for row in range(n):
+
+        if safe(row, col):
+
+            board[row][col] = 1
+
+            if solve(col + 1):
+                return True
+
+            board[row][col] = 0
+
+solve(0)
+
+for row in board:
+    print(row)

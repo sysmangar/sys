@@ -1,0 +1,38 @@
+def chatbot():
+    print("Welcome to Blinkit Chatbot!")
+
+    cart_total = 0
+
+    while True:
+        print("\n1. Order Item\n2. View Cart\n3. Track Order\n4. Cancel Order\n5. Select Delivery Slot\n6. Exit")
+        choice = input("Enter choice: ")
+
+        if choice == '1':
+            item = input("Enter item: ")
+            qty = int(input("Enter quantity: "))
+            price = 50
+            cost = qty * price
+            cart_total += cost
+            print(f"Added {item}. Cost: Rs.{cost}")
+
+        elif choice == '2':
+            print(f"Total cart value: Rs.{cart_total}")
+
+        elif choice == '3':
+            oid = input("Enter order ID: ")
+            print(f"Order {oid} arriving in 10 mins")
+
+        elif choice == '4':
+            oid = input("Enter order ID: ")
+            print(f"Order {oid} cancelled")
+
+        elif choice == '5':
+            print("Available slots: 10AM, 1PM, 6PM")
+
+        elif choice == '6':
+            break
+
+        else:
+            print("Invalid choice")
+
+chatbot()

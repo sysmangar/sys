@@ -1,0 +1,39 @@
+grid = [
+    [0, 0, 0],
+    [1, 1, 0],
+    [0, 0, 0]
+]
+
+start = (0, 0)
+goal = (2, 2)
+
+open = [start]
+visited = []
+
+while open:
+
+    current = open.pop(0)
+
+    print(current)
+
+    if current == goal:
+        print("Goal Reached")
+        break
+
+    row, col = current
+
+    moves = [
+        (row-1, col),
+        (row+1, col),
+        (row, col-1),
+        (row, col+1)
+    ]
+
+    for r, c in moves:
+
+        if 0 <= r < 3 and 0 <= c < 3:
+
+            if grid[r][c] == 0 and (r, c) not in visited:
+
+                visited.append((r, c))
+                open.append((r, c))

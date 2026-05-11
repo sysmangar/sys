@@ -1,0 +1,68 @@
+print("🤖 Welcome to RedBus")
+
+total = 0
+
+while True:
+
+    print("\n1. Pune  - Rs 500")
+    print("2. Mumbai - Rs 700")
+    print("3. Nashik - Rs 400")
+    print("4. Checkout")
+    print("5. Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == '1':
+
+        total += 500
+
+        print("Pune ticket booked")
+
+    elif choice == '2':
+
+        total += 700
+
+        print("Mumbai ticket booked")
+
+    elif choice == '3':
+
+        total += 400
+
+        print("Nashik ticket booked")
+
+    elif choice == '4':
+
+        print("\nTotal Amount = Rs", total)
+
+        print("\nPayment Method")
+        print("1. Cash")
+        print("2. UPI")
+
+        payment = input("Enter payment option: ")
+
+        if payment == '1':
+
+            print("Cash Payment Selected")
+
+        elif payment == '2':
+
+            print("UPI Payment Successful")
+
+        else:
+
+            print("Invalid Payment")
+
+        print("\n🎉 Ticket Booking Confirmed")
+        print("Thank You")
+        
+        break
+
+    elif choice == '5':
+
+        print("Exited Successfully")
+        
+        break
+
+    else:
+
+        print("Invalid Choice")

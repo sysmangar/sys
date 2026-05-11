@@ -1,33 +1,96 @@
 def chatbot():
-    print("Welcome to IFB Service Centre!")
+
+    print("🤖 Welcome to IFB Service Centre")
+
+    complaints = []
 
     while True:
-        print("\n1. Register Complaint\n2. Check Status\n3. Service Cost\n4. Book Technician\n5. Warranty Check\n6. Exit")
+
+        print("\n========= MENU =========")
+
+        print("1. Register Complaint")
+        print("2. Check Status")
+        print("3. Service Cost")
+        print("4. Book Technician")
+        print("5. Warranty Check")
+        print("6. Cancel Complaint")
+        print("7. Exit")
+
         choice = input("Enter choice: ")
 
+        # Register Complaint
         if choice == '1':
+
             name = input("Enter name: ")
+
             issue = input("Enter issue: ")
-            print("Complaint registered. Technician will visit soon.")
 
+            complaints.append((name, issue))
+
+            print("✅ Complaint Registered Successfully")
+
+        # Check Status
         elif choice == '2':
-            rid = input("Enter request ID: ")
-            print(f"Request {rid} is in progress")
 
+            rid = input("Enter Request ID: ")
+
+            print("🔄 Request", rid, "is in progress")
+
+        # Service Cost
         elif choice == '3':
-            print("Service cost starts from Rs.500")
 
+            print("💰 Service cost starts from Rs.500")
+
+        # Book Technician
         elif choice == '4':
-            print("Available slots: Tomorrow 10AM / 4PM")
 
+            print("🛠 Available Slots:")
+            print("1. Tomorrow 10AM")
+            print("2. Tomorrow 4PM")
+
+            slot = input("Select slot: ")
+
+            if slot == '1':
+
+                print("✅ Technician booked for 10AM")
+
+            elif slot == '2':
+
+                print("✅ Technician booked for 4PM")
+
+            else:
+
+                print("Invalid Slot")
+
+        # Warranty Check
         elif choice == '5':
-            product = input("Enter product ID: ")
-            print("Product is under warranty")
 
+            product = input("Enter Product ID: ")
+
+            print("✅ Product is under warranty")
+
+        # Cancel Complaint
         elif choice == '6':
+
+            if len(complaints) == 0:
+
+                print("❌ No complaints registered")
+
+            else:
+
+                print("Complaint Cancelled Successfully")
+
+                complaints.pop()
+
+        # Exit
+        elif choice == '7':
+
+            print("🙏 Thank You For Visiting IFB Service Centre")
+
             break
 
         else:
-            print("Invalid choice")
+
+            print("❌ Invalid Choice")
 
 chatbot()
